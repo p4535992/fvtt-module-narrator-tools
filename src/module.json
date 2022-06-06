@@ -1,86 +1,145 @@
 {
-	"name": "narrator-tools",
-	"title": "Narrator Tools",
-	"description": "Special tools to increase the immersion in your roleplaying game.",
-	"version": "0.70",
-	"author": ["elizeuangelo"],
-	"scripts": ["./narrator.js", "./context-menu.min.js"],
-	"styles": ["./narrator.css", "./context-menu.min.css"],
-	"languages": [
-		{
-			"lang": "cn",
-			"name": "简体中文",
-			"path": "./lang/cn.json"
-		},
-		{
-			"lang": "de",
-			"name": "Deutsch",
-			"path": "./lang/de.json"
-		},
-		{
-			"lang": "en",
-			"name": "English",
-			"path": "./lang/en.json"
-		},
-		{
-			"lang": "es",
-			"name": "Español",
-			"path": "./lang/es.json"
-		},
-		{
-			"lang": "fr",
-			"name": "Français",
-			"path": "./lang/fr.json"
-		},
-		{
-			"lang": "it",
-			"name": "Italian",
-			"path": "./lang/it.json"
-		},
-		{
-			"lang": "ja",
-			"name": "日本語",
-			"path": "./lang/ja.json"
-		},
-		{
-			"lang": "ko",
-			"name": "한국어",
-			"path": "./lang/ko.json"
-		},
-		{
-			"lang": "pl",
-			"name": "Polski",
-			"path": "./lang/pl.json"
-		},
-		{
-			"lang": "pt-BR",
-			"name": "Português (Brasil)",
-			"path": "./lang/pt-BR.json"
-		},
-		{
-			"lang": "ru",
-			"name": "русский",
-			"path": "./lang/ru.json"
-		},
-		{
-			"lang": "th",
-			"name": "ไทย",
-			"path": "./lang/th.json"
-		}
-	],
-	"packs": [
-		{
-			"name": "narrator-macros",
-			"label": "Narrator Tools",
-			"path": "./packs/macros.db",
-			"module": "narrator-tools",
-			"entity": "Macro"
-		}
-	],
-	"url": "https://github.com/elizeuangelo/fvtt-module-narrator-tools",
-	"manifest": "https://github.com/elizeuangelo/fvtt-module-narrator-tools/releases/download/latest/module.json",
-	"download": "https://github.com/elizeuangelo/fvtt-module-narrator-tools/releases/download/v0.70/narrator-tools.zip",
-	"minimumCoreVersion": "9",
-	"compatibleCoreVersion": "9",
-	"allowBugReporter": true
+  "name": "narrator-tools",
+  "title": "Narrator Tools",
+  "description": "Special tools to increase the immersion in your roleplaying game.",
+  "version": "0.80.0",
+  "author": "elizeuangelo, Teshynil",
+  "authors": [
+    { "name": "elizeuangelo" },
+    {
+      "name": "p4535992",
+      "url": "https://github.com/p4535992",
+      "discord": "",
+      "twitter": "",
+      "patreon": "",
+      "github": "p4535992",
+      "ko-fi": "",
+      "reddit": "",
+      "email": ""
+    }
+  ],
+  "type": "module",
+  "socket": true,
+  "includes": [
+    "./assets/**",
+    "./lang/**",
+    "./scripts/**",
+    "./styles/**",
+    "./templates/**",
+    "./module.json",
+    "./README.md",
+    "./icons/**",
+    "./packs/**"
+  ],
+  "media": [
+    {
+      "type": "icon",
+      "location": ""
+    },
+    {
+      "type": "cover",
+      "location": ""
+    },
+    {
+      "type": "screenshot",
+      "location": ""
+    }
+  ],
+  "languages": [
+    {
+      "lang": "cn",
+      "name": "简体中文",
+      "path": "./lang/cn.json"
+    },
+    {
+      "lang": "de",
+      "name": "Deutsch",
+      "path": "./lang/de.json"
+    },
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "./lang/en.json"
+    },
+    {
+      "lang": "es",
+      "name": "Español",
+      "path": "./lang/es.json"
+    },
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "./lang/fr.json"
+    },
+    {
+      "lang": "it",
+      "name": "Italian",
+      "path": "./lang/it.json"
+    },
+    {
+      "lang": "ja",
+      "name": "日本語",
+      "path": "./lang/ja.json"
+    },
+    {
+      "lang": "ko",
+      "name": "한국어",
+      "path": "./lang/ko.json"
+    },
+    {
+      "lang": "pl",
+      "name": "Polski",
+      "path": "./lang/pl.json"
+    },
+    {
+      "lang": "pt-BR",
+      "name": "Português (Brasil)",
+      "path": "./lang/pt-BR.json"
+    },
+    {
+      "lang": "ru",
+      "name": "русский",
+      "path": "./lang/ru.json"
+    },
+    {
+      "lang": "th",
+      "name": "ไทย",
+      "path": "./lang/th.json"
+    }
+  ],
+  "scripts": [],
+  "esmodules": ["main.js"],
+  "styles": ["./styles/narrator.css", "./styles/context-menu.min.css"],
+  "packs": [
+    {
+      "name": "narrator-macros",
+      "label": "Narrator Tools",
+      "path": "./packs/macros.db",
+      "module": "narrator-tools",
+      "entity": "Macro",
+      "type": "Macro"
+    }
+  ],
+  "minimumCoreVersion": "9",
+  "compatibleCoreVersion": "9",
+  "manifestPlusVersion": "1.2.0",
+  "url": "https://github.com/p4535992/fvtt-module-narrator-tools",
+  "manifest": "https://github.com/p4535992/fvtt-module-narrator-tools/releases/latest/download/module.json",
+  "download": "https://github.com/p4535992/fvtt-module-narrator-tools/releases/latest/download/module.zip",
+  "readme": "https://github.com/p4535992/fvtt-module-narrator-tools/blob/v0.80.0/README.md",
+  "changelog": "https://github.com/p4535992/fvtt-module-narrator-tools/blob/v0.80.0/changelog.md",
+  "bugs": "https://github.com/p4535992/fvtt-module-narrator-tools/issues",
+  "allowBugReporter": true,
+  "dependencies": [
+    {
+      "name": "lib-wrapper"
+    },
+    {
+      "name": "socketlib"
+    }
+  ],
+  "flags": {
+    "manifestPlusVersion": "1.2.0",
+    "allowBugReporter": true
+  }
 }

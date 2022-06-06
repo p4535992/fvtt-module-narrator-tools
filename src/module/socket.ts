@@ -24,9 +24,7 @@ export function registerSocket() {
    * Generic socket
    */
   narratorToolsSocket.register(SOCKET_HANDLERS.CALL_HOOK, (hook, ...args) => callHook(hook, ...args));
-  narratorToolsSocket.register('updateContentStyle', (...args) =>
-    API.updateContentStyleArr(...args),
-  );
+  narratorToolsSocket.register('updateContentStyle', (...args) => API.updateContentStyleArr(...args));
   setSocket(narratorToolsSocket);
   return narratorToolsSocket;
 }

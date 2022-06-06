@@ -87,19 +87,19 @@ export function isResponsibleGM() {
 }
 
 export function firstGM() {
-  return game.users?.find(u => u.isGM && u.active);
+  return game.users?.find((u) => u.isGM && u.active);
 }
 
 export function isFirstGM() {
   return game.user?.id === firstGM()?.id;
 }
 
-export function firstOwner(doc):User|undefined {
+export function firstOwner(doc): User | undefined {
   /* null docs could mean an empty lookup, null docs are not owned by anyone */
   if (!doc) return undefined;
-  const permissionObject=(doc instanceof TokenDocument ? doc.actor?.data.permission : doc.data.permission) ?? {}
+  const permissionObject = (doc instanceof TokenDocument ? doc.actor?.data.permission : doc.data.permission) ?? {};
   const playerOwners = Object.entries(permissionObject)
-    .filter(([id, level]) => (!game.users?.get(id)?.isGM && game.users?.get(id)?.active) && level === 3)
+    .filter(([id, level]) => !game.users?.get(id)?.isGM && game.users?.get(id)?.active && level === 3)
     .map(([id, level]) => id);
 
   if (playerOwners.length > 0) {
@@ -347,4 +347,3 @@ function getElevationPlaceableObject(placeableObject: any): number {
 // =============================
 // Module specific function
 // =============================
-

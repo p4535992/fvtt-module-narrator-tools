@@ -1,5 +1,3 @@
-
-
 import CONSTANTS from './constants';
 import API from './api';
 import { registerSocket } from './socket';
@@ -18,7 +16,7 @@ export const setupHooks = (): void => {
   // setup all the hooks
   setApi(API);
 
-  NarratorTools._setup();
+  // NarratorTools._setup();
 };
 
 export const readyHooks = (): void => {
