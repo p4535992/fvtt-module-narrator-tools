@@ -1,0 +1,86 @@
+{
+	"name": "narrator-tools",
+	"title": "Narrator Tools",
+	"description": "Special tools to increase the immersion in your roleplaying game.",
+	"version": "0.70",
+	"author": ["elizeuangelo"],
+	"scripts": ["./narrator.js", "./context-menu.min.js"],
+	"styles": ["./narrator.css", "./context-menu.min.css"],
+	"languages": [
+		{
+			"lang": "cn",
+			"name": "简体中文",
+			"path": "./lang/cn.json"
+		},
+		{
+			"lang": "de",
+			"name": "Deutsch",
+			"path": "./lang/de.json"
+		},
+		{
+			"lang": "en",
+			"name": "English",
+			"path": "./lang/en.json"
+		},
+		{
+			"lang": "es",
+			"name": "Español",
+			"path": "./lang/es.json"
+		},
+		{
+			"lang": "fr",
+			"name": "Français",
+			"path": "./lang/fr.json"
+		},
+		{
+			"lang": "it",
+			"name": "Italian",
+			"path": "./lang/it.json"
+		},
+		{
+			"lang": "ja",
+			"name": "日本語",
+			"path": "./lang/ja.json"
+		},
+		{
+			"lang": "ko",
+			"name": "한국어",
+			"path": "./lang/ko.json"
+		},
+		{
+			"lang": "pl",
+			"name": "Polski",
+			"path": "./lang/pl.json"
+		},
+		{
+			"lang": "pt-BR",
+			"name": "Português (Brasil)",
+			"path": "./lang/pt-BR.json"
+		},
+		{
+			"lang": "ru",
+			"name": "русский",
+			"path": "./lang/ru.json"
+		},
+		{
+			"lang": "th",
+			"name": "ไทย",
+			"path": "./lang/th.json"
+		}
+	],
+	"packs": [
+		{
+			"name": "narrator-macros",
+			"label": "Narrator Tools",
+			"path": "./packs/macros.db",
+			"module": "narrator-tools",
+			"entity": "Macro"
+		}
+	],
+	"url": "https://github.com/elizeuangelo/fvtt-module-narrator-tools",
+	"manifest": "https://github.com/elizeuangelo/fvtt-module-narrator-tools/releases/download/latest/module.json",
+	"download": "https://github.com/elizeuangelo/fvtt-module-narrator-tools/releases/download/v0.70/narrator-tools.zip",
+	"minimumCoreVersion": "9",
+	"compatibleCoreVersion": "9",
+	"allowBugReporter": true
+}
