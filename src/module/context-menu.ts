@@ -1,4 +1,7 @@
 class ContextMenuNT {
+    theme:any;
+    menu:any;
+
     constructor(data) {
         (this.theme = data.theme), this.build(data.items);
     }

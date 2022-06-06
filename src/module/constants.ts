@@ -1,8 +1,6 @@
 const CONSTANTS = {
-  MODULE_NAME: 'conditional-visibility',
-  PATH: `modules/conditional-visibility/`,
-  FLAG_NAME: 'data',
-  AE_BASE_PREFIX: 'ATCV',
+  MODULE_NAME: 'narrator-tools',
+  PATH: `modules/narrator-tools/`,
 };
 
 CONSTANTS.PATH = `modules/${CONSTANTS.MODULE_NAME}/`;
