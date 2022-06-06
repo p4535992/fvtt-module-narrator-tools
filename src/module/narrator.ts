@@ -19,7 +19,7 @@ export class NarratorMenu extends FormApplication<FormApplicationOptions, object
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       id: 'narrator-config',
-      title: game.i18n.localize('NT.Title'),
+      title: game.i18n.localize('narrator-tools.Title'),
       classes: ['sheet'],
       template: 'modules/narrator-tools/templates/config.html',
       width: 800,
@@ -134,14 +134,14 @@ export const NarratorTools = {
           if (match[1]) {
             this.character = match[1];
             ($('#chat-message')[0] as HTMLInputElement).placeholder =
-              game.i18n.localize('NT.SpeakingAs') + ' ' + this.character;
+              game.i18n.localize('narrator-tools.SpeakingAs') + ' ' + this.character;
           } else {
             this.character = '';
             ($('#chat-message')[0] as HTMLInputElement).placeholder = '';
           }
         } else {
           if (c == 'narration' && !game.user?.hasPermission('SETTINGS_MODIFY'))
-            ui.notifications.error(game.i18n.localize('NT.CantModifySettings'));
+            ui.notifications.error(game.i18n.localize('narrator-tools.CantModifySettings'));
           else this.createChatMessage(c, match[1]);
         }
         return false;
@@ -262,7 +262,7 @@ export const NarratorTools = {
     const hasPerm = <number>game.user?.role >= <number>game.settings.get(CONSTANTS.MODULE_NAME, 'PERMScenery');
     if (hasPerm) {
       const name = 'scenery';
-      const title = game.i18n.localize('NT.ButtonTitle');
+      const title = game.i18n.localize('narrator-tools.ButtonTitle');
       const icon = 'fas fa-theater-masks';
       const active = this.sharedState.scenery;
       const btn = $(
@@ -413,10 +413,10 @@ export const NarratorTools = {
     });
     this.elements.buttonClose.html(`<i class="fas fa-times-circle"></i> ${game.i18n.localize('Close')}`);
     this.elements.buttonClose.on('click', this._narrationClose);
-    this.elements.buttonCopy.html(`<i class="fas fa-clipboard"></i> ${game.i18n.localize('NT.Copy')}`);
+    this.elements.buttonCopy.html(`<i class="fas fa-clipboard"></i> ${game.i18n.localize('narrator-tools.Copy')}`);
     this.elements.buttonCopy.on('click', () => {
       navigator.clipboard.writeText(this.elements.content[0].innerText);
-      ui.notifications.info(game.i18n.localize('NT.CopyClipboard'));
+      ui.notifications.info(game.i18n.localize('narrator-tools.CopyClipboard'));
     });
 
     if (!this.isNarrator) {
@@ -657,11 +657,11 @@ export const NarratorTools = {
   _updateStopButton(pause: boolean) {
     if (pause) {
       NarratorTools.elements.buttonPause.html(
-        `<i class='fas fa-play-circle'></i> ${game.i18n.localize('NT.PlayButton')}`,
+        `<i class='fas fa-play-circle'></i> ${game.i18n.localize('narrator-tools.PlayButton')}`,
       );
     } else {
       NarratorTools.elements.buttonPause.html(
-        `<i class='fas fa-pause-circle'></i> ${game.i18n.localize('NT.PauseButton')}`,
+        `<i class='fas fa-pause-circle'></i> ${game.i18n.localize('narrator-tools.PauseButton')}`,
       );
     }
   },
@@ -777,7 +777,7 @@ export const NarratorTools = {
       },
       type: game.settings.get(CONSTANTS.MODULE_NAME, 'MessageType'),
       speaker: {
-        alias: game.i18n.localize('NT.Narrator'),
+        alias: game.i18n.localize('narrator-tools.Narrator'),
         scene: game.user?.viewedScene,
       },
       whisper: type == 'notification' ? game.users?.contents.filter((u) => u.isGM) : [],
@@ -858,7 +858,7 @@ export const NarratorTools = {
   scenery(state?: boolean) {
     if (<number>game.user?.role >= <number>game.settings.get(CONSTANTS.MODULE_NAME, 'PERMScenery')) {
       if (!game.user?.hasPermission('SETTINGS_MODIFY')) {
-        error(game.i18n.localize('NT.CantModifySettings'), true);
+        error(game.i18n.localize('narrator-tools.CantModifySettings'), true);
       } else {
         this.sharedState.scenery = state ?? !this.sharedState.scenery;
       }
