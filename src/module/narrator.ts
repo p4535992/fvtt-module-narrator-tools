@@ -1,4 +1,3 @@
-import type { ChatMessageData } from '@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/module.mjs';
 import CONSTANTS from './constants';
 import { ContextMenuNT } from './context-menu';
 import { error } from './lib/lib';
@@ -83,6 +82,20 @@ export class NarratorMenu extends FormApplication<FormApplicationOptions, object
  * Primary object used by the Narrator Tools module
  */
 export const NarratorTools = {
+  // DESCRIPTION_SPEAKER_ALIAS: '#NARRATOR_TOOLS_DESCRIPTION',
+  // CHAT_MESSAGE_TYPES: {
+  //   OTHER: 0,
+  //   OOC: 1,
+  //   IC: 2,
+  //   EMOTE: 3,
+  //   WHISPER: 4,
+  //   ROLL: 5
+  // },
+  // CHAT_MESSAGE_SUB_TYPES: {
+  //   NONE: 0,
+  //   DESC: 1,
+  //   AS: 2,
+  // },
   _element: $(
     `<div id="narrator" class="narrator">
       <div class="narrator-bg"></div>
@@ -115,7 +128,12 @@ export const NarratorTools = {
     content = content.replace(/\n/g, '<br>');
 
     if (<number>game.user?.role >= <number>game.settings.get(CONSTANTS.MODULE_NAME, 'PERMAs')) {
+      // extended commands
+      // commands.as = new RegExp('^(\\/as\\s+)(\\([^\\)]+\\)|\\[[^\\]]+\\]|"[^"]+"|\'[^\']+\'|[^\\s]+)\\s+([^]*)', 'i');
       commands.as = new RegExp('^(?:\\/as$|\\/as ([^]*))', 'i');
+    }
+    if (<number>game.user?.role >= <number>game.settings.get(CONSTANTS.MODULE_NAME, 'PERMNarrate')) {
+      commands.narration = new RegExp('^\\/narrat(?:e|ion) ([^]*)', 'i');
     }
     if (<number>game.user?.role >= <number>game.settings.get(CONSTANTS.MODULE_NAME, 'PERMDescribe')) {
       commands.description = new RegExp('^\\/desc(?:ribe|ription|) ([^]*)', 'i');
@@ -130,6 +148,60 @@ export const NarratorTools = {
     for ([c, rgx] of Object.entries(commands)) {
       match = content.match(rgx);
       if (match) {
+        // Process message data based on the identified command type
+        switch (c) {
+          // case 'desc': {
+          //   match[2] = game.i18n.localize('narrator-tools.SpeakingAs');
+          //   chatData.flags ??= {};
+          //   chatData.flags['narrator-tools'] = { subType: this.CHAT_MESSAGE_SUB_TYPES.DESC };
+          //   // Fall through...
+          //   ChatMessage.create(chatData, {});
+          //   break;
+          // }
+          case 'as': {
+            if (match[1]) {
+              this.character = match[1];
+              ($('#chat-message')[0] as HTMLInputElement).placeholder =
+                game.i18n.localize('narrator-tools.SpeakingAs') + ' ' + this.character;
+            } else {
+              this.character = '';
+              ($('#chat-message')[0] as HTMLInputElement).placeholder = '';
+            }
+
+            // Remove quotes or brackets around the speaker's name.
+            /*
+            const alias = match[2]?.replace(/^["'\\(\\[](.*?)["'\\)\\]]$/, '$1');
+
+            chatData.flags ??= {};
+            chatData.flags['narrator-tools'] ??= { subType: this.CHAT_MESSAGE_SUB_TYPES.AS };
+            chatData.type = this.CHAT_MESSAGE_TYPES.IC;
+            chatData.speaker = { alias: alias, scene: game.user?.viewedScene };
+            chatData.content = match[3]?.replace(/\n/g, '<br>');
+
+            ChatMessage.create(chatData, {});
+            */
+            break;
+          }
+          case 'narration': {
+            if (c == 'narration' && !game.user?.hasPermission('SETTINGS_MODIFY')) {
+              ui.notifications.error(game.i18n.localize('narrator-tools.CantModifySettings'));
+            } else {
+              if(match[1]){
+                this.createChatMessage(c, match[1]);
+              }
+            }
+            break;
+          }
+          default: {
+            if(match[1]){
+              this.createChatMessage(c, match[1]);
+            }
+            break;
+          }
+        }
+        return false;
+
+        /*
         if (c == 'as') {
           if (match[1]) {
             this.character = match[1];
@@ -145,6 +217,7 @@ export const NarratorTools = {
           else this.createChatMessage(c, match[1]);
         }
         return false;
+        */
       }
     }
   },
@@ -159,9 +232,13 @@ export const NarratorTools = {
       const btn = $('.control-tool[data-tool=scenery]');
       if (btn) {
         if (scenery) {
-          (<HTMLElement>btn[0]).classList.add('active');
+          if(btn[0]){
+            (<HTMLElement>btn[0]).classList.add('active');
+          }
         } else {
-          (<HTMLElement>btn[0]).classList.remove('active');
+          if(btn[0]){
+            (<HTMLElement>btn[0]).classList.remove('active');
+          }
         }
       }
     }
@@ -380,7 +457,7 @@ export const NarratorTools = {
           name: 'Describe',
           action: () => {
             const selection = NarratorTools._getSelectionText();
-            if (selection){
+            if (selection) {
               NarratorTools.chatMessage.describe(selection);
             }
           },

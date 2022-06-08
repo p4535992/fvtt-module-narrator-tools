@@ -109,7 +109,7 @@
   ],
   "scripts": [],
   "esmodules": ["main.js"],
-  "styles": ["./styles/narrator.css", "./styles/context-menu.min.css"],
+  "styles": ["./styles/narrator.css", "./styles/context-menu.css"],
   "packs": [
     {
       "name": "narrator-macros",

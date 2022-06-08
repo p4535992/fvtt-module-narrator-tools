@@ -37,7 +37,7 @@ export const registerSettings = function (): void {
       /**If the background scenery is on or off */
       scenery: false,
     },
-    onChange: (newState: { narration: NarrationState; scenery: boolean }) => this._controller(newState),
+    onChange: (newState: { narration: NarrationState; scenery: boolean }) => NarratorTools._controller(newState),
   });
   // Register the application menu
   game.settings.registerMenu(CONSTANTS.MODULE_NAME, 'settingsMenu', {
