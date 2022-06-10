@@ -186,14 +186,14 @@ export const NarratorTools = {
             if (c == 'narration' && !game.user?.hasPermission('SETTINGS_MODIFY')) {
               ui.notifications.error(game.i18n.localize('narrator-tools.CantModifySettings'));
             } else {
-              if(match[1]){
+              if (match[1]) {
                 this.createChatMessage(c, match[1]);
               }
             }
             break;
           }
           default: {
-            if(match[1]){
+            if (match[1]) {
               this.createChatMessage(c, match[1]);
             }
             break;
@@ -232,11 +232,11 @@ export const NarratorTools = {
       const btn = $('.control-tool[data-tool=scenery]');
       if (btn) {
         if (scenery) {
-          if(btn[0]){
+          if (btn[0]) {
             (<HTMLElement>btn[0]).classList.add('active');
           }
         } else {
-          if(btn[0]){
+          if (btn[0]) {
             (<HTMLElement>btn[0]).classList.remove('active');
           }
         }
@@ -441,7 +441,7 @@ export const NarratorTools = {
     };
     this._updateBGColor();
     this._updateBGImage();
-    this._fitSidebar();
+    this._fitSidebar(); // TODO THIS MOVE THE SIDEBAR ???
     $('body').append(this._element);
 
     // Check if the user can Narrate
@@ -782,9 +782,13 @@ export const NarratorTools = {
   },
   /**Updates the background opacity to match the scenery */
   _updateScenery(scenery?: boolean) {
-    if (!scenery) scenery = this.sharedState.scenery;
+    if (!scenery) {
+      scenery = this.sharedState.scenery;
+    }
     const new_state = scenery ? '1' : '0';
-    if (this.elements.frameBG[0].style.opacity === new_state) return;
+    if (this.elements.frameBG[0].style.opacity === new_state) {
+      return;
+    }
     this.elements.frameBG[0].style.opacity = new_state;
     this.elements.sidebarBG[0].style.opacity = new_state;
   },
